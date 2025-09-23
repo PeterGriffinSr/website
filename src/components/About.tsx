@@ -1,6 +1,6 @@
 "use client"
 
-import { motion, useAnimation, useInView } from "framer-motion"
+import { motion, useInView } from "framer-motion"
 import { useRef, useEffect, useState } from "react"
 import { SiOcaml, SiC, SiHaskell, SiVscodium } from "react-icons/si"
 import Link from "next/link"
@@ -83,7 +83,7 @@ export function About() {
             </motion.h2>
 
             <motion.p className="text-lg mb-16 leading-relaxed text-center text-gray-800 dark:text-gray-200 max-w-3xl mx-auto" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.2 }}>
-                Hi! I'm <span className="font-semibold text-blue-500">codezz-ops</span>, a mathematician, developer, and researcher.
+                Hi! I&apos;m <span className="font-semibold text-blue-500">codezz-ops</span>, a mathematician, developer, and researcher.
                 I explore <span className="font-semibold text-blue-500">programming languages</span>, <span className="font-semibold text-blue-500">type systems</span>,
                 and build <span className="font-semibold text-blue-500">compilers</span>. Below is a snapshot of my journey.
             </motion.p>
