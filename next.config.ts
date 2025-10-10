@@ -4,8 +4,7 @@ const nextConfig: NextConfig = {
   output: "export",
   reactStrictMode: true,
   trailingSlash: true,
-  assetPrefix: "/",
-  basePath: "/",
+  basePath: "/petergriffinsr.github.io",
   images: {
     unoptimized: true,
   },
