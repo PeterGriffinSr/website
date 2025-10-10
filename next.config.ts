@@ -4,7 +4,8 @@ const nextConfig: NextConfig = {
   output: "export",
   reactStrictMode: true,
   trailingSlash: true,
-  basePath: "/petergriffinsr.github.io",
+  assetPrefix: "/petergriffinsr-github-io.vercel.app",
+  basePath: "/petergriffinsr-github-io.vercel.app",
   images: {
     unoptimized: true,
   },
