@@ -73,30 +73,59 @@ export function About() {
     return (
         <motion.section
             id="about"
-            className="py-24 px-4 max-w-5xl mx-auto"
+            className="py-24 px-6 max-w-6xl mx-auto"
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.8 }}
         >
-            <motion.h2 className="text-5xl font-bold mb-12 text-center" initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
+            <motion.h2
+                className="text-5xl font-extrabold mb-12 text-center bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent"
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+            >
                 About Me
             </motion.h2>
 
-            <motion.p className="text-lg mb-16 leading-relaxed text-center text-gray-800 dark:text-gray-200 max-w-3xl mx-auto" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.2 }}>
+            <motion.p
+                className="text-lg mb-16 leading-relaxed text-center text-gray-800 dark:text-gray-200 max-w-3xl mx-auto"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+            >
                 Hi! I&apos;m <span className="font-semibold text-blue-500">codezz-ops</span>, a mathematician, developer, and researcher.
-                I explore <span className="font-semibold text-blue-500">programming languages</span>, <span className="font-semibold text-blue-500">type systems</span>,
-                and build <span className="font-semibold text-blue-500">compilers</span>. Below is a snapshot of my journey.
+                I explore <span className="font-semibold text-blue-500">programming languages</span>,{" "}
+                <span className="font-semibold text-blue-500">type systems</span>, and build{" "}
+                <span className="font-semibold text-blue-500">compilers</span>. Below is a snapshot of my journey.
             </motion.p>
 
             {/* Timeline */}
-            <div className="relative border-l-2 border-gray-300 dark:border-gray-700 ml-4 mb-16">
+            <div className="relative border-l-2 border-blue-400/30 dark:border-blue-500/30 ml-4 mb-16">
                 {timeline.map((item, idx) => (
-                    <motion.div key={idx} className="mb-10 ml-6 relative" initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: idx * 0.2 }}>
-                        <span className="absolute -left-6 top-0 w-3 h-3 bg-blue-500 rounded-full border border-white dark:border-gray-900" />
-                        <time className="text-sm font-bold text-gray-600 dark:text-gray-400">{item.year}</time>
-                        <h3 className="text-xl font-semibold mt-1">
+                    <motion.div
+                        key={idx}
+                        className="mb-10 ml-6 relative bg-gradient-to-br from-white/80 to-blue-50/30 dark:from-gray-800/90 dark:to-gray-900/60 
+                                   backdrop-blur-xl border border-white/20 dark:border-gray-700 rounded-xl p-5 shadow-lg
+                                   transition-all duration-500 hover:shadow-[0_10px_40px_rgba(59,130,246,0.25)]"
+                        initial={{ opacity: 0, x: -50 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: idx * 0.2 }}
+                    >
+                        <span className="absolute -left-6 top-5 w-3 h-3 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full shadow-md" />
+                        <time className="text-sm font-semibold text-blue-600 dark:text-blue-400">{item.year}</time>
+                        <h3 className="text-xl font-bold mt-1 text-gray-900 dark:text-gray-100">
                             {item.title}
-                            {item.link && <Link href={item.link} target="_blank" className="ml-2 text-blue-500 hover:underline">↗</Link>}
+                            {item.link && (
+                                <Link
+                                    href={item.link}
+                                    target="_blank"
+                                    className="ml-2 text-blue-500 hover:underline"
+                                >
+                                    ↗
+                                </Link>
+                            )}
                         </h3>
                         <p className="text-gray-700 dark:text-gray-300 mt-2">{item.description}</p>
                     </motion.div>
@@ -104,19 +133,38 @@ export function About() {
             </div>
 
             {/* Stats */}
-            <div ref={ref} className="flex justify-center gap-12 mb-12">
+            <div ref={ref} className="flex justify-center flex-wrap gap-12 mb-16">
                 {stats.map((stat, idx) => (
-                    <motion.div key={stat.label} className="text-center">
-                        <p className="text-3xl font-bold text-blue-500">{counts[idx]}+</p>
-                        <p className="text-gray-700 dark:text-gray-300">{stat.label}</p>
+                    <motion.div
+                        key={stat.label}
+                        className="text-center bg-gradient-to-br from-blue-50/50 to-white/10 dark:from-gray-800/70 dark:to-gray-900/40 
+                                   backdrop-blur-xl border border-white/10 dark:border-gray-700 rounded-2xl px-8 py-6 shadow-md 
+                                   transition-all duration-300 hover:shadow-[0_10px_30px_rgba(59,130,246,0.25)]"
+                        whileHover={{ scale: 1.05, y: -5 }}
+                    >
+                        <p className="text-4xl font-extrabold bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
+                            {counts[idx]}+
+                        </p>
+                        <p className="text-gray-700 dark:text-gray-300 mt-1">{stat.label}</p>
                     </motion.div>
                 ))}
             </div>
 
             {/* Skills */}
-            <motion.div className="flex flex-wrap justify-center gap-3 mb-12" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.4 }}>
+            <motion.div
+                className="flex flex-wrap justify-center gap-3 mb-16"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+            >
                 {skills.map((skill) => (
-                    <motion.span key={skill} className="bg-blue-100 dark:bg-blue-800 text-blue-800 dark:text-blue-100 px-4 py-2 rounded-full font-medium text-sm" whileHover={{ scale: 1.1, rotate: -2 }}>
+                    <motion.span
+                        key={skill}
+                        className="px-4 py-2 rounded-full font-medium text-sm bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-sm
+                                   hover:shadow-blue-500/30 transition-all duration-300"
+                        whileHover={{ scale: 1.1, rotate: -2 }}
+                    >
                         {skill}
                     </motion.span>
                 ))}
@@ -124,12 +172,26 @@ export function About() {
 
             {/* Languages */}
             <div className="text-center">
-                <h3 className="text-2xl font-semibold mb-6">Languages & Tools</h3>
-                <motion.div className="flex flex-wrap justify-center gap-6" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.6 }}>
+                <h3 className="text-2xl font-semibold mb-6 text-gray-900 dark:text-gray-100">
+                    Languages & Tools
+                </h3>
+                <motion.div
+                    className="flex flex-wrap justify-center gap-8"
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: 0.6 }}
+                >
                     {languages.map((lang) => {
                         const Icon = lang.icon
                         return (
-                            <motion.div key={lang.name} className="flex flex-col items-center gap-1" whileHover={{ scale: 1.1, y: -3 }}>
+                            <motion.div
+                                key={lang.name}
+                                className="flex flex-col items-center gap-2 bg-gradient-to-br from-white/80 to-blue-50/40 dark:from-gray-800/90 dark:to-gray-900/60 
+                                           backdrop-blur-xl border border-white/20 dark:border-gray-700 rounded-xl p-4 shadow-md
+                                           transition-all duration-300 hover:shadow-[0_10px_25px_rgba(59,130,246,0.25)]"
+                                whileHover={{ scale: 1.1, y: -3 }}
+                            >
                                 <Icon className="text-4xl text-blue-500" />
                                 <span className="text-sm text-gray-700 dark:text-gray-300">{lang.name}</span>
                             </motion.div>

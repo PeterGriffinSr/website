@@ -3,92 +3,91 @@
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 
-const titles = ["Codezz-ops", "Mathematician", "Developer", "Researcher"]
-const typingSpeed = 100
-const deletingSpeed = 50
-const pauseTime = 3500
+const TITLES = ["Codezz-ops", "Mathematician", "Developer", "Researcher"]
+const TYPING_SPEED = 100
+const DELETING_SPEED = 50
+const PAUSE_TIME = 3000
 
 export function Hero() {
-    const [currentTitle, setCurrentTitle] = useState(0)
-    const [displayText, setDisplayText] = useState("")
+    const [index, setIndex] = useState(0)
+    const [text, setText] = useState("")
     const [isDeleting, setIsDeleting] = useState(false)
 
     useEffect(() => {
-        let timer: NodeJS.Timeout
-        const currentFullTitle = currentTitle === 0 ? titles[currentTitle] : `a ${titles[currentTitle]}`
+        const fullText = index === 0 ? TITLES[index] : `a ${TITLES[index]}`
+        let timeout: NodeJS.Timeout
 
         if (!isDeleting) {
-            if (displayText.length < currentFullTitle.length) {
-                timer = setTimeout(() => {
-                    setDisplayText(currentFullTitle.slice(0, displayText.length + 1))
-                }, typingSpeed)
+            if (text.length < fullText.length) {
+                timeout = setTimeout(() => setText(fullText.slice(0, text.length + 1)), TYPING_SPEED)
             } else {
-                timer = setTimeout(() => setIsDeleting(true), pauseTime)
+                timeout = setTimeout(() => setIsDeleting(true), PAUSE_TIME)
             }
         } else {
-            if (displayText.length > 0) {
-                timer = setTimeout(() => {
-                    setDisplayText(displayText.slice(0, displayText.length - 1))
-                }, deletingSpeed)
+            if (text.length > 0) {
+                timeout = setTimeout(() => setText(text.slice(0, -1)), DELETING_SPEED)
             } else {
                 setIsDeleting(false)
-                setCurrentTitle((prev) => (prev + 1) % titles.length)
+                setIndex((i) => (i + 1) % TITLES.length)
             }
         }
 
-        return () => clearTimeout(timer)
-    }, [displayText, isDeleting, currentTitle])
+        return () => clearTimeout(timeout)
+    }, [text, isDeleting, index])
 
     const renderText = () => {
-        if (currentTitle === 0) return <span className="text-blue-500">{displayText}</span>
-        const aPart = displayText.startsWith("a ") ? "a " : ""
-        const rest = displayText.slice(aPart.length)
+        if (index === 0) return <span className="text-blue-500">{text}</span>
+        const prefix = text.startsWith("a ") ? "a " : ""
+        const suffix = text.slice(prefix.length)
         return (
             <>
-                <span className="text-white">{aPart}</span>
-                <span className="text-blue-500">{rest}</span>
+                <span className="text-white">{prefix}</span>
+                <span className="text-blue-500">{suffix}</span>
             </>
         )
     }
 
     return (
-        <section className="flex min-h-screen flex-col items-center justify-center text-center px-4">
+        <section
+            id="hero"
+            className="flex min-h-screen flex-col items-center justify-center text-center px-4"
+        >
             <motion.h1
-                className="text-6xl font-bold mb-4"
-                initial={{ opacity: 0, y: -50 }}
+                className="text-6xl sm:text-7xl font-bold mb-6"
+                initial={{ opacity: 0, y: -40 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
             >
                 Hi, I&apos;m {renderText()}
-                <span className="text-blue-500 blinking-cursor">|</span>
+                <span className="text-blue-500 blinking-cursor" aria-hidden="true">|</span>
             </motion.h1>
 
             <motion.p
-                className="text-xl max-w-xl mb-8 leading-relaxed text-gray-800 dark:text-gray-200"
-                initial={{ opacity: 0, y: 20 }}
+                className="text-xl sm:text-2xl max-w-2xl mb-10 leading-relaxed text-gray-800 dark:text-gray-200"
+                initial={{ opacity: 0, y: 25 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
             >
-                I research <span className="font-semibold text-blue-500">programming languages</span>, design{" "}
-                <span className="font-semibold text-blue-500">type systems</span>, and build{" "}
-                <span className="font-semibold text-blue-500">compilers</span>.
+                I research <span className="font-semibold text-blue-500">programming languages</span>,
+                design <span className="font-semibold text-blue-500">type systems</span>,
+                and build <span className="font-semibold text-blue-500">compilers</span>.
             </motion.p>
 
             <motion.div
-                className="flex space-x-4"
+                className="flex flex-wrap justify-center gap-4"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 1, delay: 0.6 }}
             >
                 <a
                     href="#projects"
-                    className="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+                    className="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all font-semibold shadow-md"
                 >
                     See My Work
                 </a>
                 <a
                     href="#contact"
-                    className="px-6 py-3 border border-blue-500 text-blue-500 rounded-lg hover:bg-blue-500 hover:text-white transition-colors"
+                    className="px-6 py-3 border border-blue-500 text-blue-500 rounded-lg hover:bg-blue-500 hover:text-white transition-all font-semibold shadow-md"
                 >
                     Contact Me
                 </a>

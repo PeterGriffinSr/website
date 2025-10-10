@@ -1,13 +1,13 @@
 export const projects = [
-    {
-        title: "Calyxium",
-        description: "multi-paradigm, memory-safe, monomorphic, strongly typed language with ad-hoc polymorphism.",
-        link: "https://github.com/calyxium-lang/calyxium",
-        tech: ["Ocaml", "Interpreter"],
-        image: "/calyxium-preview.png",
-        buildStatus: "https://github.com/calyxium-lang/calyxium/actions/workflows/ci.yml/badge.svg"
-    },
-    {
+  {
+    title: "Calyxium",
+    description: "multi-paradigm, memory-safe, monomorphic, strongly typed language with ad-hoc polymorphism.",
+    link: "https://github.com/calyxium-lang/calyxium",
+    tech: ["Ocaml", "Interpreter"],
+    image: "/calyxium-preview.png",
+    buildStatus: "https://github.com/calyxium-lang/calyxium/actions/workflows/ci.yml/badge.svg"
+  },
+  {
     title: "Thale",
     description: "Small, purely functional language with immutability, expression-based syntax, and pattern matching.",
     link: "https://github.com/PeterGriffinSr/Thale",
