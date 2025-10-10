@@ -4,8 +4,8 @@ const nextConfig: NextConfig = {
   output: "export",
   reactStrictMode: true,
   trailingSlash: true,
-  assetPrefix: "/",
-  basePath: "/",
+  assetPrefix: "/codezz-ops.vercel.app",
+  basePath: "/codezz-ops.vercel.app",
   images: {
     unoptimized: true,
   },
